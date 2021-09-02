@@ -85,7 +85,8 @@ sql_create_tables_dictionary = {
         + "num_endereco integer,"
         + "cidade text,"
         + "estado text,"
-        + "renda integer"
+        + "renda integer,"
+        + "PRIMARY KEY(CPF, CNPJ)"
         + ");"
     ),
     "create_telefone_table": (
@@ -94,6 +95,7 @@ sql_create_tables_dictionary = {
         + "CNPJ text,"
         + "num_agencia integer,"
         + "telefone text,"
+        + "PRIMARY KEY(CPF, CNPJ, num_agencia, telefone),"
         + "FOREIGN KEY(CPF, CNPJ) REFERENCES cliente(CPF, CNPJ),"
         + "FOREIGN KEY(num_agencia) REFERENCES agencia(num_agencia)"
         + ");"
