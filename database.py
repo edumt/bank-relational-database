@@ -46,7 +46,7 @@ sql_create_tables_dictionary = {
         "CREATE TABLE IF NOT EXISTS seguro ("
         + "id_seguro integer PRIMARY KEY AUTOINCREMENT,"
         + "id_tipo integer NOT NULL,"
-        + "carencia text,"  # text ou integer
+        + "carencia integer,"  # integer ou text
         + "FOREIGN KEY(id_tipo) REFERENCES tipo_servico(id_tipo) ON DELETE RESTRICT"
         + ");"
     ),
@@ -93,7 +93,7 @@ sql_create_tables_dictionary = {
         + "CPF text,"
         + "CNPJ text,"
         + "num_agencia integer,"
-        + "telefone text NOT NULL,"
+        + "telefone text NOT NULL CHECK (length(telefone) >= 11),"
         + "PRIMARY KEY(CPF, CNPJ, num_agencia, telefone),"
         + "FOREIGN KEY(CPF, CNPJ) REFERENCES cliente(CPF, CNPJ) ON DELETE CASCADE,"
         + "FOREIGN KEY(num_agencia) REFERENCES agencia(num_agencia) ON DELETE CASCADE"
