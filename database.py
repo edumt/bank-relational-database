@@ -14,7 +14,11 @@ sql_create_tables_dictionary = {
         + "id_conta integer,"
         + "nome text,"
         + "data_contratada text,"
-        + "data_vencimento text"
+        + "data_vencimento text,"
+        + "FOREIGN KEY(num_cartao) REFERENCES cartao(num_cartao),"
+        + "FOREIGN KEY(id_aplicacao) REFERENCES aplicacao(id_aplicacao),"
+        + "FOREIGN KEY(id_seguro) REFERENCES seguro(id_seguro),"
+        + "FOREIGN KEY(id_conta) REFERENCES conta(id_conta)"
         + ");"
     ),
     "create_cartao_table": (
@@ -25,7 +29,8 @@ sql_create_tables_dictionary = {
         + "fatura integer,"
         + "data_fatura text,"
         + "data_expiracao text,"
-        + "cvv integer"
+        + "cvv integer,"
+        + "FOREIGN KEY(id_tipo) REFERENCES tipo_servico(id_tipo)"
         + ");"
     ),
     "create_aplicacao_table": (
@@ -34,14 +39,16 @@ sql_create_tables_dictionary = {
         + "id_tipo integer,"
         + "nome text,"
         + "valor_aplicado integer,"
-        + "data_retirada text"
+        + "data_retirada text,"
+        + "FOREIGN KEY(id_tipo) REFERENCES tipo_servico(id_tipo)"
         + ");"
     ),
     "create_seguro_table": (
         "CREATE TABLE IF NOT EXISTS seguro ("
         + "id_seguro integer PRIMARY KEY AUTOINCREMENT,"
         + "id_tipo integer,"
-        + "carencia text"  # text ou integer
+        + "carencia text,"  # text ou integer
+        + "FOREIGN KEY(id_tipo) REFERENCES tipo_servico(id_tipo)"
         + ");"
     ),
     "create_tipo_servico_table": (
@@ -61,7 +68,10 @@ sql_create_tables_dictionary = {
         + "id_gerente integer,"
         + "tipo text,"  # text ou integer
         + "saldo integer,"
-        + "status text"  # text ou integer
+        + "status text,"  # text ou integer
+        + "FOREIGN KEY(CPF, CNPJ) REFERENCES cliente(CPF, CNPJ),"
+        + "FOREIGN KEY(num_agencia) REFERENCES agencia(num_agencia),"
+        + "FOREIGN KEY(id_gerente) REFERENCES funcionario(id_funcionario)"
         + ");"
     ),
     "create_cliente_table": (
@@ -83,7 +93,9 @@ sql_create_tables_dictionary = {
         + "CPF text,"
         + "CNPJ text,"
         + "num_agencia integer,"
-        + "telefone text"
+        + "telefone text,"
+        + "FOREIGN KEY(CPF, CNPJ) REFERENCES cliente(CPF, CNPJ),"
+        + "FOREIGN KEY(num_agencia) REFERENCES agencia(num_agencia)"
         + ");"
     ),
     "create_transfere_para_table": (
@@ -93,7 +105,9 @@ sql_create_tables_dictionary = {
         + "id_destino integer,"
         + "valor integer,"
         + "data text,"
-        + "horario text"
+        + "horario text,"
+        + "FOREIGN KEY(id_remetente) REFERENCES conta(id_conta),"
+        + "FOREIGN KEY(id_destino) REFERENCES conta(id_conta)"
         + ");"
     ),
     # Agencia
@@ -113,7 +127,8 @@ sql_create_tables_dictionary = {
         + "nome text,"
         + "bonificacao integer,"
         + "num_agencia int,"
-        + "horas_trabalhadas int"
+        + "horas_trabalhadas int,"
+        + "FOREIGN KEY(num_agencia) REFERENCES agencia(num_agencia),"
         + ");"
     ),
 }
