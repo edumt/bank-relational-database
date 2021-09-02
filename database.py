@@ -41,7 +41,7 @@ sql_create_tables_dictionary = {
         "CREATE TABLE IF NOT EXISTS seguro ("
         + "id_seguro integer PRIMARY KEY AUTOINCREMENT,"
         + "id_tipo integer,"
-        + "carencia text" # text ou integer
+        + "carencia text"  # text ou integer
         + ");"
     ),
     "create_tipo_servico_table": (
@@ -118,10 +118,11 @@ sql_create_tables_dictionary = {
     ),
 }
 
-"""
-#testing
+
 for sql_create_table in sql_create_tables_dictionary.values():
     conn.execute(sql_create_table)
+"""
+#testing
 for i in range(5):
     conn.execute("INSERT INTO AGENCIA (num_agencia, CEP, rua, num_endereco) VALUES (1, 1, 'TESTE', 1)")
 conn.execute("COMMIT")
