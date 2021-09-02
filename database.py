@@ -3,7 +3,6 @@ import sqlite3
 conn = sqlite3.connect("bank.db").cursor()
 
 sql_create_tables_dictionary = {
-    # todo: add foreign keys references
     # Servico
     "create_servico_table": (
         "CREATE TABLE IF NOT EXISTS servico ("
@@ -69,7 +68,7 @@ sql_create_tables_dictionary = {
         + "tipo text NOT NULL,"  # text ou integer
         + "saldo integer NOT NULL,"
         + "status text NOT NULL,"  # text ou integer
-        + "FOREIGN KEY(CPF, CNPJ) REFERENCES cliente(CPF, CNPJ) ON DELETE CASCADE," # CASCADE?
+        + "FOREIGN KEY(CPF, CNPJ) REFERENCES cliente(CPF, CNPJ) ON DELETE CASCADE,"  # CASCADE?
         + "FOREIGN KEY(num_agencia) REFERENCES agencia(num_agencia) ON DELETE RESTRICT,"
         + "FOREIGN KEY(id_gerente) REFERENCES funcionario(id_funcionario) ON DELETE RESTRICT"
         + ");"
@@ -130,7 +129,7 @@ sql_create_tables_dictionary = {
         + "bonificacao integer,"
         + "num_agencia integer NOT NULL,"
         + "horas_trabalhadas integer NOT NULL,"
-        + "FOREIGN KEY(num_agencia) REFERENCES agencia(num_agencia) ON DELETE RESTRICT,"
+        + "FOREIGN KEY(num_agencia) REFERENCES agencia(num_agencia) ON DELETE RESTRICT"
         + ");"
     ),
 }
