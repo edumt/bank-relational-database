@@ -22,7 +22,7 @@ sql_create_tables_dictionary = {
     ),
     "create_cartao_table": (
         "CREATE TABLE IF NOT EXISTS cartao ("
-        + "num_cartao integer PRIMARY KEY,"
+        + "num_cartao integer PRIMARY KEY CHECK (length(telefone) = 16),"
         + "id_tipo integer NOT NULL,"
         + "limite integer,"
         + "fatura integer,"
