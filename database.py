@@ -15,10 +15,10 @@ sql_create_tables_dictionary = {
         + "nome text NOT NULL,"
         + "data_contratada text NOT NULL,"
         + "data_vencimento text,"
-        + "FOREIGN KEY(num_cartao) REFERENCES cartao(num_cartao),"
-        + "FOREIGN KEY(id_aplicacao) REFERENCES aplicacao(id_aplicacao),"
-        + "FOREIGN KEY(id_seguro) REFERENCES seguro(id_seguro),"
-        + "FOREIGN KEY(id_conta) REFERENCES conta(id_conta)"
+        + "FOREIGN KEY(num_cartao) REFERENCES cartao(num_cartao) ON DELETE CASCADE,"
+        + "FOREIGN KEY(id_aplicacao) REFERENCES aplicacao(id_aplicacao) ON DELETE CASCADE,"
+        + "FOREIGN KEY(id_seguro) REFERENCES seguro(id_seguro) ON DELETE CASCADE,"
+        + "FOREIGN KEY(id_conta) REFERENCES conta(id_conta) ON DELETE CASCADE"
         + ");"
     ),
     "create_cartao_table": (
@@ -30,7 +30,7 @@ sql_create_tables_dictionary = {
         + "data_fatura text,"
         + "data_expiracao text,"
         + "cvv integer NOT NULL,"
-        + "FOREIGN KEY(id_tipo) REFERENCES tipo_servico(id_tipo)"
+        + "FOREIGN KEY(id_tipo) REFERENCES tipo_servico(id_tipo) ON DELETE RESTRICT"
         + ");"
     ),
     "create_aplicacao_table": (
@@ -40,7 +40,7 @@ sql_create_tables_dictionary = {
         + "nome text NOT NULL,"
         + "valor_aplicado integer NOT NULL,"
         + "data_retirada text,"
-        + "FOREIGN KEY(id_tipo) REFERENCES tipo_servico(id_tipo)"
+        + "FOREIGN KEY(id_tipo) REFERENCES tipo_servico(id_tipo) ON DELETE RESTRICT"
         + ");"
     ),
     "create_seguro_table": (
@@ -48,7 +48,7 @@ sql_create_tables_dictionary = {
         + "id_seguro integer PRIMARY KEY AUTOINCREMENT,"
         + "id_tipo integer NOT NULL,"
         + "carencia text,"  # text ou integer
-        + "FOREIGN KEY(id_tipo) REFERENCES tipo_servico(id_tipo)"
+        + "FOREIGN KEY(id_tipo) REFERENCES tipo_servico(id_tipo) ON DELETE RESTRICT"
         + ");"
     ),
     "create_tipo_servico_table": (
@@ -69,9 +69,9 @@ sql_create_tables_dictionary = {
         + "tipo text NOT NULL,"  # text ou integer
         + "saldo integer NOT NULL,"
         + "status text NOT NULL,"  # text ou integer
-        + "FOREIGN KEY(CPF, CNPJ) REFERENCES cliente(CPF, CNPJ),"
-        + "FOREIGN KEY(num_agencia) REFERENCES agencia(num_agencia),"
-        + "FOREIGN KEY(id_gerente) REFERENCES funcionario(id_funcionario)"
+        + "FOREIGN KEY(CPF, CNPJ) REFERENCES cliente(CPF, CNPJ) ON DELETE CASCADE," # CASCADE?
+        + "FOREIGN KEY(num_agencia) REFERENCES agencia(num_agencia) ON DELETE RESTRICT,"
+        + "FOREIGN KEY(id_gerente) REFERENCES funcionario(id_funcionario) ON DELETE RESTRICT"
         + ");"
     ),
     "create_cliente_table": (
@@ -96,8 +96,8 @@ sql_create_tables_dictionary = {
         + "num_agencia integer,"
         + "telefone text NOT NULL,"
         + "PRIMARY KEY(CPF, CNPJ, num_agencia, telefone),"
-        + "FOREIGN KEY(CPF, CNPJ) REFERENCES cliente(CPF, CNPJ),"
-        + "FOREIGN KEY(num_agencia) REFERENCES agencia(num_agencia)"
+        + "FOREIGN KEY(CPF, CNPJ) REFERENCES cliente(CPF, CNPJ) ON DELETE CASCADE,"
+        + "FOREIGN KEY(num_agencia) REFERENCES agencia(num_agencia) ON DELETE CASCADE"
         + ");"
     ),
     "create_transfere_para_table": (
@@ -108,8 +108,8 @@ sql_create_tables_dictionary = {
         + "valor integer NOT NULL,"
         + "data text NOT NULL,"
         + "horario text,"
-        + "FOREIGN KEY(id_remetente) REFERENCES conta(id_conta),"
-        + "FOREIGN KEY(id_destino) REFERENCES conta(id_conta)"
+        + "FOREIGN KEY(id_remetente) REFERENCES conta(id_conta) ON DELETE RESTRICT,"
+        + "FOREIGN KEY(id_destino) REFERENCES conta(id_conta) ON DELETE RESTRICT"
         + ");"
     ),
     # Agencia
@@ -130,7 +130,7 @@ sql_create_tables_dictionary = {
         + "bonificacao integer,"
         + "num_agencia integer NOT NULL,"
         + "horas_trabalhadas integer NOT NULL,"
-        + "FOREIGN KEY(num_agencia) REFERENCES agencia(num_agencia),"
+        + "FOREIGN KEY(num_agencia) REFERENCES agencia(num_agencia) ON DELETE RESTRICT,"
         + ");"
     ),
 }
