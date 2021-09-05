@@ -1,4 +1,24 @@
 # bank-relational-database
+- [bank-relational-database](#bank-relational-database)
+  - [1. Descrição](#1-descrição)
+  - [2. Diagrama ER](#2-diagrama-er)
+  - [3. Esquema Relacional](#3-esquema-relacional)
+    - [3.1 Resumo](#31-resumo)
+      - [• Serviços:](#-serviços)
+      - [• Conta:](#-conta)
+      - [• Agencia:](#-agencia)
+  - [4. Implementação](#4-implementação)
+    - [4.1 Tabelas](#41-tabelas)
+      - [• Serviços:](#-serviços-1)
+      - [• Contas:](#-contas)
+      - [• Agência:](#-agência)
+    - [4.2 Assertions](#42-assertions)
+      - [O saldo não pode ser negativo](#o-saldo-não-pode-ser-negativo)
+      - [A fatura não pode exceder o limite](#a-fatura-não-pode-exceder-o-limite)
+      - [A fatura não pode ser negativa](#a-fatura-não-pode-ser-negativa)
+      - [CPF e CNPJ não podem ter ambos valores válidos](#cpf-e-cnpj-não-podem-ter-ambos-valores-válidos)
+      - [Serviço só pode ser de um tipo](#serviço-só-pode-ser-de-um-tipo)
+
 ## 1. Descrição
 O presente trabalho é a representação de um banco de dados de uma agência bancária. No modelo criado pelo grupo, cada funcionário trabalha em uma agência e os funcionários que são gerentes recebem uma bonificação. Sempre que um funcionário é inserido no banco de dados, ele recebe um ID, usado para identificá-lo internamente na agência. Além disso, é feito o registro tanto da data de nascimento quanto do nome de cada funcionário. Também é feito o registro da carga horária de cada funcionário na agência em que trabalha. Os dados da agência requeridos são: telefone e endereço; sendo esse último dividido em: número, rua e cep. 
 
