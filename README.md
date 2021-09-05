@@ -145,8 +145,8 @@ Funcionario(id_funcionario, data_nascimento, nome, bonificacao, num_agencia, hor
     );
 #### A fatura não pode exceder o limite
     CREATE ASSERTION fatura_dentro_do_limite (
-    CHECK(NOT EXISTS (SELECT * FROM cartao WHERE fatura > limite))
-);   
+     CHECK(NOT EXISTS (SELECT * FROM cartao WHERE fatura > limite))
+    );   
 #### A fatura não pode ser negativa
     CREATE ASSERTION fatura_nao_pode_ser_negativa (
         CHECK(NOT EXISTS (SELECT * FROM cartao WHERE fatura < 0))
