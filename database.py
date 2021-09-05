@@ -112,11 +112,12 @@ print(conn.execute("SELECT * FROM AGENCIA").fetchall())
 
 """
 
-test_file = open("tests/agencia.sql", "r")
-# for query in test_file.readlines():
-# conn.execute(query)
+""" test_file = open("tests/agencia.sql", "r")
+for query in test_file.readlines():
+    conn.execute(query)
 test_file.close()
-# conn.execute("COMMIT")
+conn.execute("COMMIT")
 for row in conn.execute("SELECT * FROM agencia"):
     print(row)
 # print(conn.execute("SELECT * FROM agencia").fetchall())
+ """
